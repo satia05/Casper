@@ -1,0 +1,44 @@
+<section id="oneShop">
+    <div class="flexslider">
+        <ul class="slides">
+            <li>
+                <div class="img">
+                    <a target="_blank" href="<?= $article['imagesArticle'][0] ?>"><img src="<?= $article['imagesArticle'][0] ?>" /></a>
+                </div>
+            </li>
+            <li>
+                <div class="img">
+                    <a target="_blank" href="<?= $article['imagesArticle'][1] ?>"><img src="<?= $article['imagesArticle'][1] ?>" /></a>
+                </div>
+            </li>
+            <li>
+                <div class="img">
+                    <a target="_blank" href="<?= $article['imagesArticle'][2] ?>"><img src="<?= $article['imagesArticle'][2] ?>" /></a>
+                </div>
+            </li>
+            <ul>
+    </div>
+    <div class="option">
+        <div>
+            <h1><?= $article['nomArticle'] ?></h1>
+            <h2>Description: </h2>
+            <p><?= $article['descriptionArticle'] ?></p>
+            <p><?= $article['prixArticle'] ?>€</p>
+        </div>
+        <div>
+            <?php if ($article['stock'] <= 10) {
+                if ($article['stock'] > 1) { ?>
+                    <p>Attention il ne reste plus que <?= $article['stock'] ?> articles en stock !!!</p>
+                <?php } else { ?>
+                    <p>Attention il ne reste plus que <?= $article['stock'] ?> article en stock !!!</p>
+            <?php }
+            } ?>
+        </div>
+        <div>
+            <input type="number" name="quantite" id="quantite" min="1" max="<?= $article['stock'] ?>">
+            <a href="shop.php?article=<?= htmlspecialchars($_GET['article']) ?>&add=<?= htmlspecialchars($_GET['article']) ?>" style="color:black; border-color:black; border-radius: 0%;" class="">Ajouter au panier</a>
+        </div>
+        <p>conditions de livraison</p>
+
+    </div>
+</section>

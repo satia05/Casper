@@ -1,0 +1,93 @@
+/* debut CSS login_register */
+#login,
+#register,
+#mdp_oublie {
+  margin: 190px 0;
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+}
+#psw,
+#mail,
+#mdp,
+#npswc,
+#npsw,
+#umail {
+  color: #b94949;
+  text-align: center;
+  border: none;
+  background-color: transparent;
+}
+#mdp_oublie a {
+  color: #33282c;
+}
+#login h1,
+#register h1,
+#mdp_oublie h1 {
+  display: flex;
+  justify-content: center;
+  color: #33282c;
+  /* margin-right: 13%; */
+  text-transform: uppercase;
+  align-items: center;
+  font-weight: bold;
+}
+#btn-connexion,
+#btn-enregistrer,
+#btn-signin,
+#btn-nodifmdp {
+  color: #35213e;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: larger;
+  border: solid 4px #c7a6b7;
+  border-style: dashed;
+  border-radius: 0%;
+}
+#btn-mdpoublie {
+  color: #171717;
+}
+.btn {
+  width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#login .form,
+#register .form,
+#mdp_oublie .form {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  height: 600px;
+  width: 500px;
+  background-image: url("https://i.imgur.com/5FEadum.jpeg");
+}
+#login form div,
+#register form div,
+#mdp_oublie form div {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  padding: 20px;
+}
+section form i {
+  font-size: 30px;
+  margin-right: 10px;
+  color: #33282c;
+}
+
+#login .form > div:last-child,
+#register .form > div:last-child,
+#mdp_oublie .form > div:last-child {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  text-align: center;
+}
+#login .form > div:last-child div a,
+#register .form > div:last-child a,
+#mdp_oublie .form > div:last-child a {
+  padding: 5px;
+}
+/* fin CSS login_register */

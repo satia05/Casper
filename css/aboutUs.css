@@ -1,0 +1,42 @@
+/*About-us */
+.contenant {
+  position: relative;
+  text-align: end;
+}
+
+.texte_centrer {
+  position: absolute;
+  text-align: justify;
+  width: 45%;
+  top: 40%;
+  left: 50%;
+  color: pink;
+  /*transform: translate(-50%, -50%); */
+}
+
+.contenant #txt2 {
+  position: relative;
+  text-align: justify;
+  width: 40%;
+  top: 93%;
+  left: 6%;
+  color: rgb(94, 67, 243);
+}
+
+.contenant #txt3 {
+  position: relative;
+  text-align: justify;
+  width: 40%;
+  top: 50px;
+  left: 11%;
+  color: pink;
+}
+
+.contenant img {
+  width: 50%;
+  height: 35%;
+  padding-top: 5%;
+  margin-right: 2%;
+}
+
+/*fin css about us*/

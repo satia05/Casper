@@ -1,0 +1,83 @@
+<?php if (isset($register) && $register) { ?>
+    <section id="register">
+        <div class="form">
+            <h1>S'ENREGISTRER</h1>
+            <form action="register.php" method="post">
+                <div>
+                    <input type="email" name="mail" id="mail" required="required" placeholder="IDENTIFIENT">
+                </div>
+                <div>
+                    <input type="password" name="mdp" id="mdp" required="required" placeholder="MOT DE PASSE">
+                </div>
+                <div>
+                    <input type="submit" value="SIGN IN" class="btn" id="btn-signin">
+                </div>
+            </form>
+            <div class="msg-login">
+                <?php if (isset($signUp) && $signUp) {
+                    echo "<p>Vous vous êtes enregistrés avec succés</p>";
+                } else if (isset($error) && $error) {
+                    echo "<p> Cet email existe deja dans la base de données </p>";
+                } ?>
+            </div>
+        </div>
+    </section>
+<?php } else if (isset($login) && $login) { ?>
+    <section id="login">
+        <div class="form">
+            <h1>CONNEXION</h1>
+            <form action="login.php" method="post">
+                <div>
+                    <input type="email" name="mail" id="mail" required="required" placeholder="IDENTIFIENT">
+                </div>
+                <div>
+                    <input type="password" name="psw" id="psw" required="required" placeholder="MOT DE PASSE">
+                </div>
+                <div class="form-btn">
+                    <input id="btn-connexion" type="submit" value="CONNEXION" class="btn">
+                    <a id="btn-enregistrer" href="register.php">CREE UN COMPTE</a>
+                </div>
+            </form>
+            <div>
+                <div>
+                    <a id="btn-mdpoublie" href="?mdp_oublie=true">Mot de passe oublié</a>
+                </div>
+                <?php if (isset($signIn) && $signIn) {
+                    echo "<script type='text/javascript'>document.location.replace('accueil.php');</script>";
+                } else if (isset($signIn) && !$signIn) {
+                    echo "<p>Vous vous êtes trompé sur votre email ou votre mot de passe !!!</p>";
+                } ?>
+            </div>
+        </div>
+    </section>
+<?php } else if (isset($login) && !$login) { ?>
+    <section id="mdp_oublie">
+        <div class="form">
+            <h1>MODIFIER MDP</h1>
+            <form action="login.php?mdp_oublie=true" method="post">
+                <div>
+                    <input type="email" name="umail" id="umail" required="required" placeholder="Mail">
+                </div>
+                <div>
+                    <input type="password" name="npsw" id="npsw" required="required" placeholder="Mot de passe">
+                </div>
+                <div>
+                    <input type="password" name="npswc" id="npswc" required="required" placeholder="Confirmer mot de passe">
+                </div>
+                <div>
+                    <input type="submit" value="Modifier" class="btn" id="btn-nodifmdp">
+                </div>
+            </form>
+            <div>
+                <div>
+                    <a href="register.php">S'enregistrer</a>
+                </div>
+                <?php if (isset($mdp_m) && $mdp_m) {
+                    echo "<p>Votre mot de passe a été modifié avec succés !!!</p>";
+                } else if (isset($mdp_m) && !$mdp_m) {
+                    echo "<p>Vos deux mot de passe ne correspondent pas !!!</p>";
+                } ?>
+            </div>
+        </div>
+    </section>
+<?php } ?>

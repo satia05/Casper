@@ -1,0 +1,168 @@
+<?php
+if (isset($_SESSION['modify'])) {
+    $article = $_SESSION['modify'];
+} else {
+    $article = [
+        'nom' => "",
+        'stock' => null,
+        'prix' => null,
+        'code' => "",
+        'img' => "",
+        'description' => ""
+    ];
+}
+?>
+<div id="Articles">
+    <div>
+        <form action="ajouter.php" method="post">
+            <h1>Ajouter un article</h1>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom" required="required">
+            </div>
+            <div>
+                <label for="stock">Stock:</label>
+                <input type="number" name="stock" id="stock" required="required">
+            </div>
+            <div>
+                <label for="prix">Prix:</label>
+                <input type="number" name="prix" id="prix" required="required">
+            </div>
+            <div>
+                <label for="code">Code:</label>
+                <input type="text" name="code" id="code" required="required">
+            </div>
+            <div>
+                <label for="liens">Liens images:</label>
+                <input type="text" name="liens" id="liens" placeholder="Liens des images séparé pas des virgules" required="required">
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" rows="10"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Ajouter" class="btn">
+            </div>
+        </form>
+        <form action="modifier.php" method="post">
+            <h1>Modifier un article</h1>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom" required="required" value="<?= $article['nom'] ?>">
+            </div>
+            <div>
+                <label for="stock">Stock:</label>
+                <input type="number" name="stock" id="stock" required="required" value="<?= $article['stock'] ?>">
+            </div>
+            <div>
+                <label for="prix">Prix:</label>
+                <input type="number" name="prix" id="prix" required="required" value="<?= $article['prix'] ?>">
+            </div>
+            <div>
+                <label for="code">Code:</label>
+                <input type="text" name="code" id="code" required="required" value="<?= $article['code'] ?>" readonly>
+            </div>
+            <div>
+                <label for="liens">Liens images:</label>
+                <input type="text" name="liens" id="liens" placeholder="Liens des images séparé pas des virgules" required="required" value="<?= $article['img'] ?>">
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" rows="10"><?= $article['description'] ?></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Modifier" class="btn">
+            </div>
+        </form>
+        <form action="projet_create.php" method="post">
+            <h1>Ajouter un projet</h1>
+            <div>
+                <label for="num_projet">Numero projet:</label>
+                <input type="number" name="num_projet" id="num_projet" required="required">
+            </div>
+            <div>
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom" required="required">
+            </div>
+            <div>
+                <label for="lien">Liens images:</label>
+                <input type="text" name="lien" id="liens" placeholder="Liens des images séparé pas des virgules" required="required">
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" rows="15"></textarea>
+            </div>
+            <div>
+                <input type="submit" value="Ajouter" class="btn">
+            </div>
+        </form>
+        <?php
+        if (isset($modify) && $modify) {
+            echo "<p style=\"color:green;\">Article modifier avec succés</p>";
+        } else if (isset($ajout) && $ajout) {
+            echo "<p style=\"color:green;\">Article ajouter avec succés</p>";
+        }
+        ?>
+        <!-- <form action="project.php" method="POST">
+            <div>
+                <label for="first-name">Numero Projet <span class="required"></label>
+                <input type="text" id="num_projet" name="num_projet" value="<?php echo $get_projet['num_projet'] ?>">
+            </div>
+            <div>
+                <label for="first-name">Nom<span class="required"></span></label>
+                <input type="text" id="nom" name="nom" value="<?php echo $get_projet['nom'] ?>">
+            </div>
+            <div>
+                <label for="first-name">Projet lien<span class="required"></span></label>
+                <input type="text" id="lien" name="lien" value="<?php echo $get_projet['lien'] ?>">
+            </div>
+            <div>
+                <label for="first-name">Projet description <span class="required"></span></label>
+                <input type="text" id="description" name="description" value="<?php echo $get_projet['description'] ?>">
+            </div>
+            <div>
+                <label for="first-name">Projet description <span class="required"></span></label>
+                <input name="num_projet" value="<?php echo $get_projet['num_projet'] ?>">
+            </div>
+        </form> -->
+        <div class="projet-table-div">
+            <h1>Liste Projet</h1>
+            <table class="projet-table">
+                <thead>
+                    <tr class="projet-colonne">
+                        <!--Non de colonne -->
+                        <th>Positionnement</th>
+                        <th>Nunéro Projet</th>
+                        <th>Nom Projet</th>
+                        <th>Description</th>
+                        <th>Lien Image</th>
+                        <th>Éditer</th>
+                        <th>Effacer</th>
+                    </tr>
+                </thead>
+                <tbody class="projet-contenu">
+                    <?php
+                    // fait la liste des projet en les appelant la requete verif_projet dans  project.php
+                    $compter = 0;
+                    while ($get_projet = $verif_projet->fetch(PDO::FETCH_ASSOC)) {
+                        $compter++ ?>
+                        <tr>
+                            <!--Affiche les valeur appeller par la boucle while juste en haut 1 par 1 -->
+                            <td width="20"><?php echo $compter ?></td>
+                            <td><?php echo $get_projet['num_projet'] ?></td>
+                            <td><?php echo $get_projet['nom'] ?></td>
+                            <td><textarea name="description" id="description" rows="5" value="<?php echo $get_projet['description'] ?> "><?php echo $get_projet['description'] ?></textarea></td>
+                            <td><a class="projet-lien-img" href="<?= $get_projet['lien'] ?>" </a>Lien image</td>
+                            <td>
+                                <center><a href="project_edit.php?num_projet=<?php echo $get_projet['num_projet']; ?>"><button class="btn btn-primary btn-xs">Éditer</button></a></center>
+                            </td>
+                            <td>
+                                <center><a onclick="return confirm('Voulez Vous Réelement Supprimer le Projet ?')" href="adminer.php?supp_projet=<?= $get_projet['num_projet'] ?>"><button class="btn btn-danger btn-xs">Supprimer</button></a></center>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+/* debut CSS Articles */
+.retour-admin {
+  border: #171717;
+}
+.retour-admin > a {
+  font-size: 30px;
+  color: #9b1e1e;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: larger;
+  border: solid 4px #9b1e1e;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  /* border-style: dashed; */
+  border-radius: 0%;
+}
+#Articles {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  color: white;
+}
+#Articles > div {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+}
+#Articles form {
+  width: 25%;
+  display: flex;
+  flex-flow: column;
+  color: black;
+  text-align: center;
+}
+.projet-table-div {
+  color: black;
+  text-align: center;
+}
+.projet-table {
+  /* color: black; */
+  /* width: 200px;
+  height: 100px; */
+  border: 1px solid black;
+  background-color: white;
+}
+.projet-table > thead > tr > th {
+  border: 1px solid black;
+}
+.projet-table > tbody > tr > td {
+  text-align: center;
+}
+.projet-lien-img {
+  color: black;
+}
+#Articles > div form div input,
+#Articles > div form div textarea {
+  width: 100%;
+}
+#Articles > div div:last-child input {
+  border: solid rgb(0, 0, 0) 2px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background: none;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-self: center;
+  margin-top: 10px;
+}
+/* fin CSS Articles */

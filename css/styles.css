@@ -1,0 +1,557 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  /* background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(228, 114, 222, 0.5)), url("../img/bg_img.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;  */
+  background-color: #fbf6f3;
+  /* font-family: cursive; */
+}
+#ad {
+  display: flex;
+  flex-flow: column;
+}
+#ad header nav {
+  display: flex;
+  flex-flow: row;
+  align-self: center;
+}
+a,
+a:link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+li {
+  list-style: none;
+}
+/* index */
+#pc {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin-top: 20px;
+  padding-right: 20px;
+  z-index: 3;
+  /* width: 50%; */
+}
+.head,
+.tail {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.head a {
+  color: #cdbcd3;
+  font-size: 25px;
+  transition: 0.2s;
+}
+.head a:hover {
+  color: #171717;
+  transition: 0.2s;
+}
+.est-actif a {
+  color: #171717;
+}
+#container .logo {
+  position: fixed;
+  z-index: 3;
+  top: 45%;
+}
+#container .logo img {
+  height: 256px;
+  margin-left: 10px;
+  width: auto;
+}
+#container {
+  height: 100%;
+  width: 100%;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: 10px;
+}
+header #phone {
+  display: none;
+}
+footer {
+  background-color: inherit;
+  padding: 50px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.tail {
+  padding: 0 100px;
+}
+footer div {
+  width: 100%;
+  margin-top: 30px;
+  text-align: center;
+  color: rgb(0, 91, 209);
+}
+/*
+.logo{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    align-self: center;
+    width:100px;
+    height:auto; 
+    padding-top: 10%;
+    align-items: center;
+} */
+.tail a {
+  color: black;
+}
+.tail a i {
+  size: 5;
+}
+#scrollUp {
+  display: none;
+  position: fixed;
+  bottom: 10%;
+  left: 95%;
+  opacity: 0.5;
+}
+#scrollUp a img {
+  width: 50px;
+  height: 50px;
+}
+
+/*debut dropdown */
+.dropdown-projet {
+  position: absolute;
+  width: 200px;
+  z-index: 2;
+  background: #e7e2dd;
+  display: none;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 120px;
+  margin-top: 16px;
+  padding: 0.5rem;
+  transform: translateX(-25%);
+  transition: opacity 0.15s ease-out;
+}
+
+.dropdown-item a {
+  width: 100%;
+  height: 100%;
+}
+.dropdown-item:hover {
+  background: rgb(0, 0, 0, 0);
+  color: #171717;
+}
+
+.has-dropdown-projet:focus-within .dropdown-projet {
+  display: flex;
+  pointer-events: auto;
+}
+
+/* fin CSS dropdown */
+
+/* debut CSS autres  */
+.dropdown-autre {
+  position: absolute;
+  width: 350px;
+  z-index: 2;
+  background: #e7e2dd;
+  display: none;
+  align-items: center;
+  flex-flow: column;
+  justify-content: space-around;
+  height: 300px;
+  margin-top: 16px;
+  padding: 0.5rem;
+  transform: translateX(-25%);
+  transition: opacity 0.15s ease-out;
+}
+.has-dropdown-autre:focus-within .dropdown-autre {
+  display: flex;
+  pointer-events: auto;
+}
+
+/* fin CSS autres  */
+
+/* debut css panier */
+#cart-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transition: var(--mainTransition);
+  background: rgba(0, 0, 0, 0.151);
+  z-index: 4;
+  visibility: hidden;
+}
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  z-index: 5;
+  background: rgb(231, 226, 221);
+  padding: 1.5rem;
+  transition: var(--mainTransition);
+  /* transform: translateX(0); */
+}
+.banner-btn {
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 1rem;
+  background: whitesmoke;
+  color: black;
+  border: 1px solid whitesmoke;
+  transition: var(--mainTransition);
+  cursor: pointer;
+}
+.cart-items {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--primaryColor);
+  padding: 0 5px;
+  border-radius: 30%;
+  color: var(--mainWhite);
+}
+:target {
+  visibility: hidden;
+  transform: translateX(0);
+}
+
+.transparentBcg {
+  visibility: visible;
+}
+@media screen and (min-width: 768px) {
+  .cart {
+    width: 30vw;
+    min-width: 450px;
+  }
+}
+
+.close-cart {
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+.close-cart-btn {
+  background: transparent;
+  border: none;
+}
+
+.cart h2 {
+  text-transform: capitalize;
+  text-align: center;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 2rem;
+}
+/*---------- element du panier -------------------- */
+.cart-item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  grid-column-gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.cart-item img {
+  width: 75px;
+  height: 75px;
+}
+.cart-item h4 {
+  font-size: 0.85rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.cart-item h5 {
+  margin: 0.5rem 0;
+  letter-spacing: var(--mainSpacing);
+}
+.item-amount {
+  text-align: center;
+}
+.remove-item {
+  color: grey;
+  cursor: pointer;
+}
+.fa-chevron-up,
+.fa-chevron-down {
+  color: var(--primaryColor);
+  cursor: pointer;
+}
+/*---------- fin element panier -------------------- */
+
+.cart-footer {
+  margin-top: 2rem;
+  letter-spacing: var(--mainSpacing);
+  text-align: center;
+}
+.cart-footer h3 {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+}
+
+/* --------------- fin css panier ---------------- */
+
+/* *********** */
+@media screen and (max-width: 750px) {
+  header #phone {
+    display: block;
+  }
+  header #phone {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 100%;
+  }
+  header #phone > a {
+    width: 100px;
+    height: 100px;
+  }
+  header #phone .logo {
+    width: 100px;
+    height: 100px;
+  }
+  header #phone nav {
+    background: inherit;
+    font-size: 20px;
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: height 0.2s;
+  }
+  header #phone nav > * {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    letter-spacing: 1px;
+    line-height: 2.5;
+    padding: 0 20px;
+  }
+  header #phone .burger {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    color: white;
+    cursor: pointer;
+    font-family: "Material Icons";
+    font-size: 30px;
+    line-height: 50px;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 20px;
+    right: 30px;
+    width: auto;
+    height: auto;
+  }
+  header #phone .burger:before {
+    content: "\002261";
+    font-size: 50px;
+  }
+  header #phone .burger:checked:before {
+    content: "\00274C";
+    font-size: 30px;
+    /*content: linear-gradient(#e66465, #9198e5);*/
+  }
+  header #phone .burger:checked + nav {
+    height: 300px;
+  }
+  header #pc,
+  #container .logo {
+    display: none;
+  }
+  footer nav ul {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  footer > div {
+    background-color: #33282c;
+  }
+  .tail {
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    text-align: center;
+    background-color: #33282c;
+  }
+  #scrollUp {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    left: 85%;
+    opacity: 0.5;
+  }
+  #scrollUp a img {
+    width: 30px;
+    height: 30px;
+  }
+  /* debut css accueil */
+  .bg {
+    display: none;
+  }
+  .bg1-2 {
+    display: flex;
+    flex-flow: column;
+  }
+  .bg1-2 div {
+    background-image: "https://cdn.pixabay.com/photo/2015/04/19/08/32/rose-729509_960_720.jpg";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 10px;
+    width: 100vw;
+    height: 50vh;
+  }
+  /* .bg1-2 div:nth-child(2){
+        background-image: "https://cdn.pixabay.com/photo/2017/01/18/17/14/girl-1990347_960_720.jpg";
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: beige;
+        width: 100vw;
+        height: 100vh;
+    }
+    .bg1-2 div:last-child{
+        background-image: "https://cdn.pixabay.com/photo/2018/08/16/19/56/wedding-rings-3611277_960_720.jpg";
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100vw;
+        height: 100vh;
+    } */
+  /* fin css accueil */
+  /* debut CSS login_register */
+  #login,
+  #register,
+  #mdp_oublie {
+    margin-top: 50px;
+    height: 30vh;
+  }
+  /* fin CSS login_register */
+  /* debut CSS shop */
+  #shop {
+    margin: 0;
+    padding: 0;
+  }
+  #shop div {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 600px;
+    padding: 15px;
+    margin-bottom: 30px;
+    background-color: white;
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    margin-bottom: 60px;
+  }
+  #shop div a:first-child {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    color: black;
+  }
+  #shop div .supprimer {
+    margin-top: 600px;
+  }
+  /* fin CSS shop */
+  /* debut CSS oneShop */
+  #oneShop {
+    margin: 50px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 30px;
+  }
+  #oneShop .flexslider,
+  #oneShop .option {
+    width: 100%;
+    height: auto;
+  }
+  #oneShop .option div:last-child {
+    width: 100%;
+  }
+  /* fin CSS oneShop */
+  /* debut CSS ajoutArticles */
+  #Articles {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    color: white;
+  }
+  #Articles > div {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+  #Articles form {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    color: white;
+  }
+  #Articles > div div input {
+    width: 100%;
+  }
+  #Articles > div div:last-child input {
+    border: solid white 2px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background: none;
+    color: white;
+    display: flex;
+    align-self: center;
+    margin-top: 10px;
+  }
+  /* fin CSS Articles */
+  /* debut css forum */
+  #forum {
+    margin-top: 30px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    color: white;
+  }
+  #forum form div #comment {
+    width: 100%;
+  }
+  #forum .field p:last-child {
+    padding-left: 50%;
+  }
+  #forum form div:last-child {
+    display: flex;
+    align-items: center;
+  }
+  #forum > div {
+    width: 100%;
+    overflow-y: none;
+  }
+  /* fin css forum */
+}

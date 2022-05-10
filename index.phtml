@@ -1,0 +1,207 @@
+<?php
+if (isset($_GET['deco']) && $_GET['deco'] === 'true') {
+    session_destroy();
+    header("Location: accueil.php");
+    die();
+}
+if (empty($_SESSION['cart'])) {
+    $_SESSION['cart'] = array();
+}
+if (isset($_GET['destroy']) && $_GET['destroy'] === 'true') {
+    session_destroy();
+    header("Location: shop.php");
+    die();
+}
+
+$verif_projet = $pdo->prepare("SELECT * FROM projet order by num_projet DESC");
+$verif_projet->execute();
+?>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8"> <!-- Sa on touche pas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sa on touche pas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sa on touche pas -->
+    <link rel="icon" type="image/png" sizes="16x16" href="img/logo.png">
+    <script src="js/jquery.min.js"></script> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" /> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/normalize.css"> <!-- Sa on touche pas -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> <!-- Sa on touche pas -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> <!-- Sa on touche pas -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- Sa on touche pas -->
+    <script src="js/bootstrap.min.js"></script> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css"> <!-- Sa on touche pas -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> <!-- Sa on touche pas -->
+    <script src="js/jquery.flexslider-min.js"></script> <!-- Sa on touche pas -->
+    <script type="text/javascript" charset="utf-8">
+        $(window).load(function() {
+            $(".flexslider").flexslider();
+        });
+        jQuery(function() {
+            $(function() {
+                $(window).scroll(function() { //Fonction appelée quand on descend la page
+                    if ($(this).scrollTop() > 200) { // Quand on est à 200pixels du haut de page,
+                        $("#scrollUp").css("display", "block"); // Replace à droite de l image
+                    } else {
+                        $("#scrollUp").removeAttr("style"); // Enlève les attributs CSS affectés par javascript
+                    }
+                });
+            });
+        });
+    </script> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/<?= $template ?>.css" type="text/css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css"> <!-- Sa on touche pas -->
+    <title><?= $title ?></title>
+</head>
+
+<body>
+    <header>
+        <nav id="pc">
+            <ul class="head">
+                <?= estActive($title, "ACCUEIL") ?><a href="accueil.php">ACCUEIL</a></li>
+                <?= estActive($title, "SHOP") ?><a href="shop.php">SHOP</a></li>
+                <li class="nav-item has-dropdown-projet">
+                    <a href="#">PROJET</a>
+                    <ul class="dropdown-projet">
+                        <?php foreach ($verif_projet as $key => $value) { ?>
+                            <li class="dropdown-item">
+                                <a href="projet.php?projet=<?= $value['num_projet'] ?>"><?= $value['nom'] ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown-autre">
+                    <a href="#">AUTRES</a>
+                    <ul class="dropdown-autre">
+                        <li class="dropdown-item">
+                            <a href="contact.php">CONTACT</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="projet.php?projet=2">ENTRETIEN BIJOUX</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a target="_blank" href="https://www.instagram.com/433/?hl=fr">INSTAGRAM</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="aboutUs.php">ABOUT US</a>
+                        </li>
+                    </ul>
+                </li>
+                <?php if (isset($_SESSION['signIn']) && $_SESSION['signIn']) { ?>
+                    <li><a href="?deco=true">LOGOUT</a></li>
+                <?php } else { ?>
+                    <?= estActive($title, "LOGIN") ?><a href="login.php">LOGIN</a></li>
+                <?php } ?>
+                <li><a href="#close-cart" onclick="on()">(<?= count($_SESSION['cart']) ?>)</a></li>
+            </ul>
+        </nav>
+        <nav id="phone">
+            <a href="accueil.php"><img class="logo" src="img/logo.png" alt="logo"></a>
+            <input type="checkbox" class="burger">
+            <nav>
+                <ul>
+                    <li><a href="accueil.php">Acceuil</a></li>
+                    <li><a href="shop.php">Shop</a></li>
+                    <li><a href="lookbook.php">Lookbook</a></li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#">PROJET</a>
+                        <ul class="dropdown">
+                            <li class="dropdown-item">
+                                <a href="projet.php?projet=1">Projet 1</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="projet.php?projet=2">Projet 2</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="projet.php?projet=2">Projet 2</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- -->
+                    <li class="nav-item has-dropdown">
+                        <a href="#">AUTRE</a>
+                        <ul class="dropdown">
+                            <li class="dropdown-item">
+                                <a href="contact.php">Projet 1</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a href="projet.php?projet=2">ENTRETIEN BIJOUX</a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a target="_blank" href="https://www.instagram.com/433/?hl=fr">INSTAGRAM</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <?php if (isset($_SESSION['signIn']) && $_SESSION['signIn']) { ?>
+                        <li><a href="?deco=true">LOGOUT</a></li>
+                    <?php } else { ?>
+                        <li><a href="login.php">Login</a></li>
+                    <?php } ?>
+                    <li><a href="cart.php">(0)</a></li>
+                </ul>
+            </nav>
+        </nav>
+    </header>
+    <div id="container">
+        <div class="logo">
+            <a href="accueil.php"><img src="img/logo.png" alt="Logo"></a>
+        </div>
+        <main id="main">
+            <?php require "Views/" . $template . ".phtml"; ?>
+            <div id="cart-overlay">
+                <div class="cart">
+                    <span class="close-cart">
+                        <button onclick="off()" class="close-cart-btn"><i class="fas fa-window-close"></i></button>
+                    </span>
+                    <h2>Panier</h2>
+                    <div class="cart-content">
+                        <?php foreach ($_SESSION['cart'] as $cartK => $cartV) { ?>
+                            <div class="cart-item">
+                                <img src="<?= $cartV['imagesArticle'][0] ?>" alt="article-panier">
+                                <div>
+                                    <h4><?= $cartV['nomArticle'] ?></h4>
+                                    <h5><?= $cartV['prixArticle'] ?>€</h5>
+                                    <span class="remove-item">retirer</span>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div class="cart-footer">
+                            <h3>total <span class="cart-total"><?= prixTotal($_SESSION['cart']) ?></span>€</h3>
+                            <button class="pay-cart banner-btn">Paiment</button>
+                        </div>
+                        <div class="cart-footer">
+                            <form method="POST" action="?destroy=true">
+                                <input type="submit" name="destroy" value="Vider le panier" class="clear-cart banner-btn">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div>
+                <nav>
+                    <ul class="tail">
+                        <li><a href="livraison.php">LIVRAISON ET RETOUR</a></li>
+                        <li><a href="condition.php">CONDITION GENERAL D'UTILISATION</a></li>
+                        <li><a href="legal.php">MENTION LEGAL</a></li>
+                        <?php if (isset($_SESSION['email']) && $_SESSION['email'] === 'admin@gmail.com') { ?>
+                            <li><a href="adminer.php">ADMIN</a></li>
+                        <?php } else if (isset($_SESSION['email'])) { ?>
+                            <li><a href="contact.php">CONTACT</a></li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+<script src="js/main.js"></script>
+
+</html>

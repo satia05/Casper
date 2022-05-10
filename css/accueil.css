@@ -1,0 +1,116 @@
+/* debut CSS accueil */
+.bg1-2 {
+  display: none;
+}
+.bg section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  color: white;
+  scroll-snap-align: start;
+}
+.carousel {
+  width: 100vw;
+  height: 100vh;
+}
+.carousel > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: 200ms opacity ease-in-out;
+}
+.slide > img {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+.slide[data-active] {
+  opacity: 1;
+}
+.carousel-button {
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  top: 40%;
+  transform: translateY(50%);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.carousel-button:hover,
+.carousel-button:focus {
+  color: black;
+}
+.carousel-button.prev {
+  right: 7rem;
+}
+.carousel-button.next {
+  left: 7rem;
+}
+.bg1 {
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-image: url("https://i.imgur.com/kbbZgUb.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bg2 {
+  justify-content: center;
+  align-items: center;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bg3 {
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://cdn.pixabay.com/photo/2018/08/16/19/56/wedding-rings-3611277_960_720.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+/* .accueil-txt-div {
+  width: 80vw;
+  margin: 10vw 10vw;
+  height: 210px;
+} */
+.accueil-txt {
+  position: relative;
+  opacity: 0.6;
+  height: 200px;
+  /* background: yellow; */
+  width: 600px;
+  font-weight: bold;
+}
+.accueil-txt-1 {
+  color: #737084;
+  top: 0;
+  left: 0;
+  /* padding-right: 300px; */
+}
+.accueil-txt-2 {
+  color: #b8b2be;
+  /* padding-left: 40px; */
+  padding-left: 150px;
+}
+.accueil-txt-3 {
+  /* padding-top: 50px; */
+  padding-left: 100px;
+  top: 0;
+  right: 0;
+  color: #c4b9c5;
+}
+/* fin CSS accueil */

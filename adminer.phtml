@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/GJ2soSg.png">
+    <link rel="stylesheet" href="css/<?= $template ?>.css" type="text/css"> <!-- Sa on touche pas -->
+    <link rel="stylesheet" href="css/styles.css" type="text/css"> <!-- Sa on touche pas -->
+    <title><?= $title ?></title>
+</head>
+
+<body id="ad">
+    <header>
+        <nav>
+            <li class="retour-admin"><a href="accueil.php">Retourner sur le site</a></li>
+        </nav>
+    </header>
+    <main>
+        <?php require 'Views_ad/' . $template . '.phtml'; ?>
+    </main>
+</body>
+
+</html>

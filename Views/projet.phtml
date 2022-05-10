@@ -1,0 +1,21 @@
+<div class="projet-main">
+    <?php
+    //Affiche un Projet
+    //Affihe les img de la BDD selon le num projet
+    foreach ($projet['img'] as $key => $val) { ?>
+
+        <section class="sec-img-projet">
+            <img src="<?= $val ?>" alt="img-projet">
+        </section>
+
+    <?php } ?>
+    <section class="sec-img-projet">
+        <div class="projet-desc">
+            <center>
+                <h3><?= $projet['nom'] ?></h3>
+                <p><?= $projet['description'] ?></p>
+            </center>
+
+        </div>
+    </section>
+</div>

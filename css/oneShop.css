@@ -1,0 +1,70 @@
+/* debut CSS oneShop */
+#oneShop {
+  margin-top: 130px;
+  padding: 100px 0 0 30%;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  color: rgb(0, 0, 0);
+  transition: 200ms ease;
+}
+#oneShop .flexslider,
+#oneShop .option {
+  transition: 200ms ease;
+  width: 50%;
+}
+#oneShop .option {
+  padding-bottom: 70px;
+}
+#oneShop .option h1 {
+  color: black;
+  transition: 2ooms ease;
+}
+#oneShop .option h1:hover {
+  color: grey;
+  transition: 200ms ease;
+}
+#oneShop .option > p {
+  font-size: 20px;
+}
+#oneShop .option div:nth-child(3) p {
+  color: green;
+  font-size: 25px;
+}
+#oneShop .option {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding-left: 30px;
+  width: 100%;
+}
+#oneShop .option > div:first-child {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 50%;
+}
+#oneShop .option > div:last-child {
+  display: flex;
+  flex-flow: row;
+  width: 50%;
+  justify-content: space-between;
+}
+#oneShop .option div > h1 {
+  margin-bottom: 50px;
+}
+#oneShop .option > div:last-child input:last-child {
+  border: solid white 1px;
+  border-radius: 15px;
+  background: none;
+  color: white;
+}
+#oneShop .option #quantite {
+  width: 50px;
+  background: #fbf6f3;
+  border: 1px solid #171717;
+}
+#oneShop .flexslider .slides .img a {
+  height: auto;
+}
+/* fin CSS oneShop */

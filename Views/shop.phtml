@@ -1,0 +1,35 @@
+<section id="shop">
+    <!--<input type="checkbox" class="burger">-->
+    <?php foreach ($results as $res) {
+        if ($res['stock'] > 0) {
+            $img = explode(',', $res['img']);
+    ?>
+            <div class="div-article">
+                <a href="?article=<?= $res['code'] ?>">
+                    <div class="div-image-article">
+                        <img src="<?= $img['0'] ?>" alt="image bijoux <?= $res['nom'] ?>">
+                    </div>
+                    <div class="div-article-info">
+                        <div class="div-article-info-nom"><?= $res['nom'] ?></div>
+                        <div class="div-article-info-prix"><?= $res['prix'] ?>€</div>
+                    </div>
+                </a>
+                <?php if (isset($_SESSION['email']) && $_SESSION['email'] === 'admin@gmail.com') { ?>
+                    <a onclick="return confirm('Voulez Vous Réelement Supprimer l\'article ?')" class="supprimer" href="?delete=<?= $res['code'] ?>">Supprimer</a>
+                    <a class="modifier" href="?modify=<?= $res['code'] ?>">Modifier</a>
+                <?php } ?>
+
+                <!-- <a onclick="return confirm('Voulez Vous Réelement Supprimer le Projet ?')" href="adminer.php?num_projet=<?php
+                                                                                                                                echo $get_projet['num_projet'];
+
+                                                                                                                                // verif existance projet, si existe supprime le projet
+                                                                                                                                // if (isset($get_projet["num_projet"])) {
+                                                                                                                                //     supprimer_projet($num_projet);
+                                                                                                                                // }
+                                                                                                                                ?>
+                   &supr_projet=ok"><button class="btn btn-danger btn-xs">Supprimer</button></a> -->
+
+            </div>
+    <?php }
+    } ?>
+</section>
